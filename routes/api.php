@@ -72,6 +72,49 @@ Route::post('materi/findJudul/{id_judul_materi}','MateriController@findJudulById
 //Add Materi
 Route::post('materi/store/{id_judul_materi}', 'MateriController@storeMateri');
 
+//Find Id Materi for update materi
+Route::post('materi/findMateri/{id}','MateriController@findMateriById');
+
+//Update Materi
+Route::post('/materi/update/{id}','MateriController@updateMateri');
+
 //Delete Materi
 Route::post('materi/delete/{id}','MateriController@deleteMateri'); 
 
+
+//Dokumentasi User
+//Add Dokumen
+Route::post('/dokumentasi/add','MateriController@dokumentasiAdd');
+
+//Find Dokumen 
+Route::post('/dokumentasi/findDokumen/{id}','MateriController@dokumentasiFindById');
+
+
+//Introduction
+//Find Introduction for update
+Route::post('/introduction/findIntroduction/{id}','IntroductionController@IntroductionFindById');
+
+//Update Introduction
+Route::post('/introduction/update/{id}','IntroductionController@updateIntroduction');
+
+
+//About 
+//Find About for update
+Route::post('/about/findAbout/{id}','AboutController@aboutFindById');
+//Update Introduction About 
+Route::post('/about/update/{id}','AboutController@updateAbout');
+
+
+//Soal
+
+//Get ALl Soal
+Route::get('/soal/allSoal','SoalController@getAllSoal'); 
+
+//Add Soal
+Route::post('/soal/store/','SoalController@storeSoal');
+
+//Find Soal for update
+Route::post('/soal/findSoal/{id}','SoalController@findSoalById');
+
+//Update Soal
+Route::post('/soal/delete/{id}','SoalController@deleteSoal');

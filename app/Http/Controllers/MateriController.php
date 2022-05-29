@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Materi;
 use App\Judul_Materi;
 use App\Bab;
+use App\File;
+use App\Dokumentasi;
 class MateriController extends Controller
 {
    
@@ -17,10 +19,11 @@ class MateriController extends Controller
 
     public function storeMateri(Request $request,$id){
         $this->validate($request,[
-            'isi_materi'=>'required|string'
+            // 'isi_materi'=>'nimes|pdf'
+            'isi_materi'=>'string'
         ],
         [
-            'isi_materi.required'=>'Wajib diisi dengan benar sesuai format'
+            'isi_materi.required'=>'Wajib diisi dengan format pdf'
         ]);
 
        $storeMateri = new Materi;
@@ -45,6 +48,33 @@ class MateriController extends Controller
         }
     }
 
+    public function findMateriById($id){
+        $findMateri = Materi::find($id);
+        
+        if(is_null($findMateri)){
+            return response()->json(['message'=>'data not found',404]);
+        }
+        else{
+            return response()->json(['MateriById'=>$findMateri]);
+        }
+
+    }
+
+    public function updateMateri(Request $request, $id){
+        $this->validate($request,[
+            'isi_materi'=>'required|string'
+        ],
+        [
+            'isi_materi.required'=>'Wajib diisi dengan benar sesuai format'
+        ]);
+
+        $updateMateri = Materi::find($id);
+        $updateMateri->isi_materi = $request->isi_materi;
+        $updateMateri->update();
+        return response()->json(['update data sucessfully'=>$updateMateri]);
+    }
+
+
     public function deleteMateri($id){
         $deleteMateri = Materi::find($id);
         if(is_null($deleteMateri)){
@@ -55,5 +85,27 @@ class MateriController extends Controller
             $deleteMateri->delete();
             return response()->json(['message'=>'deleted data sucessfully']);
         }
+    }
+    public function storeDokumentasi(Request $request){
+        $this->validate($request,[
+            'dokumentasi'=>'string'
+        ],
+        [
+            'dokumentasi.required'=>'Wajib diisi dengan format pdf'
+        ]);
+        $addDokumentasi = new Dokumentasi;
+        $addDokumentasi->dokumentasi = $request->dokumentasi;
+        
+    }
+
+    public function dokumentasiFindById($id){
+        $findDokumen = Dokumentasi::find($id);
+        if(is_null( $findDokumen)){
+            return response()->json(['message'=>'data not found',404]);
+        }
+        else{
+            return response()->json(['DokumentasiFindById'=> $findDokumen]);
+        }
+
     }
 }
