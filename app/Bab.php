@@ -20,12 +20,5 @@ class Bab extends Model
     protected $table = 'bab';
     protected $primaryKey = 'id_bab';
     
-    public function Judul_Materi(){
-        return $this->hasMany('App\Judul_Materi');
-    }
-
-    public function Materi(){
-        return $this->hasMany('App\Materi');
-    }
 
 }

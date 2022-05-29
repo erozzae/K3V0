@@ -9,7 +9,9 @@ class SoalController extends Controller
 
     public function getAllSoal(){
         $allSoal = Soal::orderBy('updated_at','asc')->get();
-        return response()->json(['allSoal'=>$allSoal]);
+        $count = Soal::all()->count();
+        return response()->json(['allSoal'=>$allSoal,
+                                  'countSoal'=>$count]);
 
     }
 

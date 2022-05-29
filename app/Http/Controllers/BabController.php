@@ -9,21 +9,26 @@ class BabController extends Controller
 {
     public function getAllBab(){
         $allBab = Bab::orderBy('updated_at','asc')->get();
-        return response()->json(['allBab'=>$allBab]);
+        $count = Bab::all()->count();
+        return response()->json(['allBab'=>$allBab,
+                                  'babCount'=>$count]);
 
     }
 
     public function storeBab(Request $request){
         $this->validate($request,[
             'nama_bab' => 'required|string|max:30',
+            'isi_materi'=>'required|string',
         ],
         [
             'nama_bab.required'=>'Wajib diisi dengan benar sesuai format',
+            'isi_materi.required'=>'Wajib diisi dengan benar sesuai format'
             
         ]);
 
         $addBab = new Bab;
         $addBab->nama_bab = $request->nama_bab;  
+        $addBab->isi_materi= $request->isi_materi;
         $addBab->save();
         return response($addBab,201);
 
@@ -39,6 +44,7 @@ class BabController extends Controller
         
         $updateBab = Bab::find($id);
         $updateBab->nama_bab = $request->nama_bab;
+        $updateBab->isi_materi = $request->isi_materi;
         $updateBab->update();
         return response(['update data sucessfully'=>$updateBab]);
     }

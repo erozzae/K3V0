@@ -14,10 +14,11 @@ class CreateBabTable extends Migration
     public function up()
     {
         Schema::create('bab', function (Blueprint $table) {
-            // $table->id();
             $table->bigIncrements('id_bab');
             $table->string('nama_bab',30);
+            $table->string('isi_materi');
             $table->timestamps();
+            
         });
     }
 
