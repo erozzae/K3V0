@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Soal;
 use Illuminate\Database\Eloquent\Model;
 
 class Bab extends Model
@@ -17,8 +18,20 @@ class Bab extends Model
     //     return $this->hasMany('App\Komentar');
     // }
 
+
+    
     protected $table = 'bab';
     protected $primaryKey = 'id_bab';
+
+    protected $fillable = [
+        'nama_bab','isi_materi'
+    ];
+
+    public function Soal(){
+        return $this->hasOne('App\Soal');
+    }
+
+
     
 
 }

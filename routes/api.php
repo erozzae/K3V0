@@ -26,6 +26,9 @@ Route::get('/bab/allBab','BabController@getAllBab');
 //Get Bab by Id
 Route::get('/bab/{id}','BabController@getBabById');
 
+//Get Bab Pdf by Id
+Route::get('/bab/pdf/{id}','BabController@getBabPdf'); 
+
 //Add Bab
 Route::post('/bab/store','BabController@storeBab');
 
@@ -38,56 +41,57 @@ Route::post('/bab/update/{id}','BabController@updateBab');
 //Delete Bab
 Route::post('/bab/delete/{id}','BabController@deleteBab');
 
+
 //
 
 //Judul Materi
 //Get All Judul Materi
-Route::get('/judul/allJudulMateri','JudulMateriController@getAllJudulMateri');
+// Route::get('/judul/allJudulMateri','JudulMateriController@getAllJudulMateri');
 
-// ----
-//Find Bab by Id for foreignKey field (for add data)
-Route::post('/judul/findBab/{id_bab}','JudulMateriController@findBabById');  
+// // ----
+// //Find Bab by Id for foreignKey field (for add data)
+// Route::post('/judul/findBab/{id_bab}','JudulMateriController@findBabById');  
 
-//Add Judul Materi
-Route::post('/judul/store/{id_bab}','JudulMateriController@storeJudulMateri');
+// //Add Judul Materi
+// Route::post('/judul/store/{id_bab}','JudulMateriController@storeJudulMateri');
 
-//Find Judul by Id (for update)
-Route::post('/judul/findJudul/{id}','JudulMateriController@findJudul');
+// //Find Judul by Id (for update)
+// Route::post('/judul/findJudul/{id}','JudulMateriController@findJudul');
 
-//Update Judul
-Route::post('/judul/update/{id}','JudulMateriController@updateJudul');
+// //Update Judul
+// Route::post('/judul/update/{id}','JudulMateriController@updateJudul');
 
-//Delete Judul
-Route::post('judul/delete/{id}','JudulMateriController@deleteJudul');
+// //Delete Judul
+// Route::post('judul/delete/{id}','JudulMateriController@deleteJudul');
 
 //
 
 //Materi
 //Get All Materi
-Route::get('/materi/allMateri','MateriController@getAllMateri');
-//----
-//Find Judul by Id for foreignKey field (for add data)
-Route::post('materi/findJudul/{id_judul_materi}','MateriController@findJudulById'); 
+// Route::get('/materi/allMateri','MateriController@getAllMateri');
+// //----
+// //Find Judul by Id for foreignKey field (for add data)
+// Route::post('materi/findJudul/{id_judul_materi}','MateriController@findJudulById'); 
 
-//Add Materi
-Route::post('materi/store/{id_judul_materi}', 'MateriController@storeMateri');
+// //Add Materi
+// Route::post('materi/store/{id_judul_materi}', 'MateriController@storeMateri');
 
-//Find Id Materi for update materi
-Route::post('materi/findMateri/{id}','MateriController@findMateriById');
+// //Find Id Materi for update materi
+// Route::post('materi/findMateri/{id}','MateriController@findMateriById');
 
-//Update Materi
-Route::post('/materi/update/{id}','MateriController@updateMateri');
+// //Update Materi
+// Route::post('/materi/update/{id}','MateriController@updateMateri');
 
-//Delete Materi
-Route::post('materi/delete/{id}','MateriController@deleteMateri'); 
+// //Delete Materi
+// Route::post('materi/delete/{id}','MateriController@deleteMateri'); 
 
 
-//Dokumentasi User
-//Add Dokumen
-Route::post('/dokumentasi/add','MateriController@dokumentasiAdd');
+// //Dokumentasi User
+// //Add Dokumen
+// Route::post('/dokumentasi/add','MateriController@dokumentasiAdd');
 
-//Find Dokumen 
-Route::post('/dokumentasi/findDokumen/{id}','MateriController@dokumentasiFindById');
+// //Find Dokumen 
+// Route::post('/dokumentasi/findDokumen/{id}','MateriController@dokumentasiFindById');
 
 
 //Introduction
@@ -106,15 +110,9 @@ Route::post('/about/update/{id}','AboutController@updateAbout');
 
 
 //Soal
+//addSoal
+Route::post('/soal/storeSoal/{id_bab}','SoalController@storeSoal');
 
-//Get ALl Soal
-Route::get('/soal/allSoal','SoalController@getAllSoal'); 
+//findSoal
+Route::get('/soal/findSoal/{id}','SoalController@findSoalById');
 
-//Add Soal
-Route::post('/soal/store/','SoalController@storeSoal');
-
-//Find Soal for update
-Route::post('/soal/findSoal/{id}','SoalController@findSoalById');
-
-//Update Soal
-Route::post('/soal/delete/{id}','SoalController@deleteSoal');

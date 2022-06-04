@@ -8,27 +8,29 @@ class SoalController extends Controller
 {
 
     public function getAllSoal(){
-        $allSoal = Soal::orderBy('updated_at','asc')->get();
-        $count = Soal::all()->count();
-        return response()->json(['allSoal'=>$allSoal,
-                                  'countSoal'=>$count]);
+       
 
     }
 
-    public function storeSoal(Request $request){
+    public function storeSoal(Request $request,$id_bab){
         $this->validate($request,[
-            'judul_soal' => 'required|string|max:40',
             'soal'=>'required|string',
+            // 'kunci_jawaban'=>'required|enum'
+        
         ],
         [
-            'judul_soal.required'=>'Wajib diisi dengan benar sesuai format',
             'soal.required'=>'Wajib diisi dengan benar sesuai format',
             
         ]);
 
         $addSoal = new Soal;
-        $addSoal->judul_soal = $request->judul_soal;
         $addSoal->soal = $request->soal;   
+        $addSoal->kunci_jawaban = $request->kunci_jawaban;
+        $addSoal->id_bab = $id_bab;
+        $addSoal->A = $request->A;
+        $addSoal->B = $request->B;
+        $addSoal->C = $request->C;
+        $addSoal->D = $request->D;
         $addSoal->save();
         return response($addSoal,201);
 
@@ -40,18 +42,18 @@ class SoalController extends Controller
             return response()->json(['message'=>'data not found',404]);
         }
         else{
-            return response()->json(['GetBabById'=>$findSoal]);
+            return response()->json(['GetSoalById'=>$findSoal]);
         }
     }
 
-    public function deleteSoal($id){
-        $delete = Soal::find($id);
-        if(is_null($delete)){
-            return response()->json(['message'=>'data not found',404]);
-        }
-        else{
-            $delete->delete();
-            return response()->json(['message'=>'deleted data sucessfully']);
-        }
-    }
+    // public function deleteSoal($id){
+    //     $delete = Soal::find($id);
+    //     if(is_null($delete)){
+    //         return response()->json(['message'=>'data not found',404]);
+    //     }
+    //     else{
+    //         $delete->delete();
+    //         return response()->json(['message'=>'deleted data sucessfully']);
+    //     }
+    // }
 }

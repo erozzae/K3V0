@@ -12,7 +12,7 @@ class IntroductionController extends Controller
             return response()->json(['message'=>'data not found',404]);
         }
         else{
-            return response()->json(['DokumentasiFindById'=> $findIntroduction]);
+            return response()->json(['IntroductionFindById'=> $findIntroduction]);
         }
     }
 
