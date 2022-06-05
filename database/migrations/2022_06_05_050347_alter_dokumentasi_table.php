@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDokumentasiTable extends Migration
+class AlterDokumentasiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,7 @@ class CreateDokumentasiTable extends Migration
      */
     public function up()
     {
-        Schema::create('dokumentasi', function (Blueprint $table) {
-            $table->bigIncrements('id_dokumentasi');
-            $table->String('dokumentasi');
-            $table->timestamps();
-        });
+        DB::statement("ALTER TABLE dokumentasi ADD dokumentasi MEDIUMBLOB");
     }
 
     /**
@@ -27,6 +23,6 @@ class CreateDokumentasiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dokumentasi');
+        //
     }
 }

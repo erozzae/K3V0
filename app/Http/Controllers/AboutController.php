@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\about;
+use App\About;
+
 class AboutController extends Controller
 {
     public function aboutFindById($id){
@@ -18,14 +19,17 @@ class AboutController extends Controller
 
     public function updateAbout(Request $request, $id){
         $this->validate($request,[
-            'about'=>'required|string'
+            'about_aplikasi'=>'required|string',
+             'about_lab'=>'required|string'
         ],
         [
-            'about.required'=>'Wajib diisi dengan benar sesuai format'
+            'about_aplikasi.required'=>'Wajib diisi dengan benar sesuai format',
+            'about_lab.required'=>'Wajib diisi dengan benar sesuai format'
         ]);
 
         $updateAbout = About::find($id);
-        $updateAbout->about = $request->about;
+        $updateAbout->about_aplikasi = $request->about_aplikasi;
+        $updateAbout->about_lab = $request->about_lab;
         $updateAbout->update();
         return response()->json(['update data sucessfully'=>$updateAbout]);
     }

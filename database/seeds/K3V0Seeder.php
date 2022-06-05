@@ -23,7 +23,8 @@ class K3V0Seeder extends Seeder
         ]);
 
         About::create([
-            'about'=> 'Tentang Aplikasi',
+            'about_lab'=> 'Tentang Lab',
+            'about_aplikasi'=> 'Tentang Aplikasi',
         ]);
     }
 }

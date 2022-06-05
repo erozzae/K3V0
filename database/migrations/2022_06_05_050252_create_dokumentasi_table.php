@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBabTable extends Migration
+class CreateDokumentasiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateBabTable extends Migration
      */
     public function up()
     {
-        Schema::create('bab', function (Blueprint $table) {
-            $table->bigIncrements('id_bab');
-            $table->string('nama_bab',30);
-            // $table->binary('isi_materi');
+        Schema::create('dokumentasi', function (Blueprint $table) {
+            $table->bigIncrements('id_dokumentasi');
             $table->timestamps();
-            
         });
-      
     }
 
     /**
@@ -30,6 +26,6 @@ class CreateBabTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bab');
+        Schema::dropIfExists('dokumentasi');
     }
 }

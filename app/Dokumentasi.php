@@ -8,4 +8,5 @@ class Dokumentasi extends Model
 {
     protected $table = 'dokumentasi';
     protected $primaryKey = 'id_dokumentasi';
+    protected $fillable = ['dokumentasi'];
 }
