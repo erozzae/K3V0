@@ -8,7 +8,10 @@ class SoalController extends Controller
 {
 
     public function getAllSoal(){
-       
+       $allSoal = Soal::orderBy('created_at')->get();
+       $count = Soal::all()->count();
+       return response()->json(['allSoal'=>$allSoal,
+                                 'totalSoal'=>$count]);
 
     }
 

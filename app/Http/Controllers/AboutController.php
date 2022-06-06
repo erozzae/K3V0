@@ -7,6 +7,8 @@ use App\About;
 
 class AboutController extends Controller
 {
+
+
     public function aboutFindById($id){
         $findAbout = About::find($id);
         if(is_null( $findAbout)){
