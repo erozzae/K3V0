@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Soal;
+
 class SoalController extends Controller
 {
 
+    public function __construct()
+    {
+       $this->middleware('auth:api');
+    }
+    
     public function getAllSoal(){
        $allSoal = Soal::orderBy('created_at')->get();
        $count = Soal::all()->count();
@@ -49,6 +55,7 @@ class SoalController extends Controller
         }
     }
 
+   
     // public function deleteSoal($id){
     //     $delete = Soal::find($id);
     //     if(is_null($delete)){

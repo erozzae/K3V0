@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class IntroductionController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('auth:api');
+    }
     public function IntroductionFindById($id){
         $findIntroduction = Introduction::find($id);
         if(is_null( $findIntroduction)){

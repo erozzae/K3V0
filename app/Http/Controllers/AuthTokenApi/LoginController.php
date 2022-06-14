@@ -15,9 +15,13 @@ class LoginController extends Controller
         ]);
 
         if( !Auth::attempt($login)){
-            return response(['message'=>'login credential invalid']);
+            return response(['response'=>false,'message'=>'login credential invalid']);
         }
-        $accessToken = Auth::User()->createToken('authToken')->accessToken;
-        return response(['user'=>Auth::User(),'accessToken'=>$accessToken]);
+        else{
+            $accessToken = Auth::User()->createToken('authToken')->accessToken;
+            return response(['response'=>true,'user'=>Auth::User(),'accessToken'=>$accessToken]);
+        }
+       
     }
+
 }

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthTokenApi\LoginController;
+use App\Http\Controllers\AuthTokenApi\LogoutController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,6 +23,7 @@ use App\Http\Controllers\AuthTokenApi\LoginController;
 //Auth & Admin
 Route::prefix('/auth')->group(function(){
     Route::post('/login',[LoginController::class,'login']);
+    Route::post('/logout',[LogoutController::class,'logout']);
 
     //Bab
     //Get All Bab -> Auth
@@ -32,6 +34,8 @@ Route::prefix('/auth')->group(function(){
     Route::middleware(['auth:api'])->get('/bab/findBab/{id}','BabController@findBab');
     //Update Bab -> Admin
     Route::middleware(['auth:api','admin'])->post('/bab/update/{id}','BabController@updateBab');
+    //find Soal/Bab -> Auth
+    Route::middleware(['auth:api'])->get('/soal/bab/findSoal/{id}','BabController@findSoalByBab');
 
     //Introduction
     //Find Introduction for update -> Auth
@@ -49,9 +53,10 @@ Route::prefix('/auth')->group(function(){
     //Get all soal -> Auth
     Route::middleware(['auth:api'])->get('/soal/allSoal','SoalController@getAllSoal');
     //add Soal -> Auth
-    Route::middleware(['auth:api'])->get('/soal/storeSoal/{id_bab}','SoalController@storeSoal');
+    Route::middleware(['auth:api','admin'])->post('/soal/storeSoal/{id_bab}','SoalController@storeSoal');
     //find Soal -> Auth
-    Route::middleware(['auth:api','admin'])->post('/soal/findSoal/{id}','SoalController@findSoalById');
+    Route::middleware(['auth:api'])->get('/soal/findSoal/{id}','SoalController@findSoalById');
+  
 
 
 });

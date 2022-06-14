@@ -7,11 +7,14 @@ use Illuminate\Support\Facades;
 use Illuminate\Support\Facades\Auth;
 use App\Bab;
 use File;
-
+use App\Soal;
 class BabController extends Controller
 {
 
-    
+    public function __construct()
+    {
+       $this->middleware('auth:api');
+    }
    
   
     public function getAllBab(){
@@ -67,6 +70,18 @@ class BabController extends Controller
         return response(['update data sucessfully'=>$updateBab]);
     }
 
+    public function findSoalByBab($id){
+        $idBab = Bab::find($id);
+        if(is_null($idBab)){
+            return response()->json(['message'=>'data not found',401]);
+        }
+        else{
+            
+            $idBab = $idBab['id_bab'];
+            $soalBab = Soal::where('id_bab',$idBab)->get();
+            return response()->json(['chapterTask'=> $soalBab]);
+        }
+    }
 
     // public function getBabPdf($id){
     //     $getBab = Bab::find($id);
