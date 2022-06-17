@@ -19,11 +19,12 @@ class LogoutController extends Controller
       $this->middleware('auth:api');
    }
 
+  
+
    public function logout(Request $request){
       $user = Auth::User()->token();
       $user->revoke();
-     
-      // return response()->json(['user'=>$user]);
+
       return response(['message' => 'You have been successfully logged out.'], 200);
    }
 }

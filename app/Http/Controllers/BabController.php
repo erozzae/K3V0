@@ -67,7 +67,7 @@ class BabController extends Controller
         $updateBab->nama_bab = $request->nama_bab;
         $updateBab->isi_materi = $request->isi_materi;
         $updateBab->update();
-        return response(['update data sucessfully'=>$updateBab]);
+        return response()->json(['update data sucessfully'=>$updateBab]);
     }
 
     public function findSoalByBab($id){
@@ -79,7 +79,9 @@ class BabController extends Controller
             
             $idBab = $idBab['id_bab'];
             $soalBab = Soal::where('id_bab',$idBab)->get();
-            return response()->json(['chapterTask'=> $soalBab]);
+            return response()->json(['chapterTask'=> $soalBab] ->withHeaders([
+                'Content-Type' => 'application/pdf',
+            ]));
         }
     }
 

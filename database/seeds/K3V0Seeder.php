@@ -19,7 +19,7 @@ class K3V0Seeder extends Seeder
         // ]);
 
         Introduction::create([
-            'introduction'=> 'Penjelasan Aplikasi Singkat',
+            'introduction'=> 'K3V0 merupakan aplikasi yang ditujukan kepada siswa SMK untuk mendapatkan informasi K3 secara mudah guna mengimplementasikan K3 saat di lab dan magang industri.',
         ]);
 
         About::create([

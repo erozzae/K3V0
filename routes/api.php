@@ -52,56 +52,22 @@ Route::prefix('/auth')->group(function(){
     //Soal
     //Get all soal -> Auth
     Route::middleware(['auth:api'])->get('/soal/allSoal','SoalController@getAllSoal');
-    //add Soal -> Auth
+    //add Soal -> Admin
     Route::middleware(['auth:api','admin'])->post('/soal/storeSoal/{id_bab}','SoalController@storeSoal');
     //find Soal -> Auth
     Route::middleware(['auth:api'])->get('/soal/findSoal/{id}','SoalController@findSoalById');
+
+    //User
+    //Get All User -> Admin
+    Route::middleware(['auth:api','admin'])->get('/user/allUser','UserController@getAllUser');
+    //Add User -> Admin
+    Route::middleware(['auth:api','admin'])->post('/user/store','UserController@store');
+    //Delete User -> Admin
+    Route::middleware(['auth:api','admin'])->post('/user/delete/{id}','UserController@delete');
   
 
 
 });
 
 
-
-// // Bab
-// // Get All Bab
-// Route::get('/bab/allBab','BabController@getAllBab');
-
-// //Add Bab
-// Route::post('/bab/store','BabController@storeBab');
-
-// //Find Bab by Id (for update)
-// Route::get('/bab/findBab/{id}','BabController@findBab');
-
-// //Update Bab
-// Route::post('/bab/update/{id}','BabController@updateBab');
-
-// //Delete Bab
-// Route::post('/bab/delete/{id}','BabController@deleteBab'); //Tidak diperlukan karena bab fix berjumlah 7 
-
-
-// //Introduction
-// //Find Introduction for update
-// Route::get('/introduction/findIntroduction/{id}','IntroductionController@IntroductionFindById');
-
-// //Update Introduction
-// Route::post('/introduction/update/{id}','IntroductionController@updateIntroduction');
-
-
-// //About 
-// //Find About for update
-// Route::get('/about/findAbout/{id}','AboutController@aboutFindById');
-// //Update Introduction About 
-// Route::post('/about/update/{id}','AboutController@updateAbout');
-
-
-//Soal
-
-// //Get all soal
-// Route::get('/soal/allSoal','SoalController@getAllSoal');
-// //add Soal
-// Route::get('/soal/storeSoal/{id_bab}','SoalController@storeSoal');
-
-// //find Soal
-// Route::get('/soal/findSoal/{id}','SoalController@findSoalById');
 

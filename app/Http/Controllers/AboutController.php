@@ -37,6 +37,6 @@ class AboutController extends Controller
         $updateAbout->about_aplikasi = $request->about_aplikasi;
         $updateAbout->about_lab = $request->about_lab;
         $updateAbout->update();
-        return response()->json(['update data sucessfully'=>$updateAbout]);
+        return response()->json(['update data successfully'=>$updateAbout]);
     }
 }
