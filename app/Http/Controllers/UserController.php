@@ -21,6 +21,17 @@ class UserController extends Controller
        
     }
 
+    public function findUserById($id){
+        $user = User::find($id);
+        if(is_null($user)){
+            return response()->json(['message'=>'data not found',401]);
+        }
+        else{
+            return response()->json(['userById'=> $user,201]);
+        }
+    }
+
+
     public function store(Request $request){
         $this->validate($request,[
             'name' => 'required|string',
@@ -42,6 +53,26 @@ class UserController extends Controller
         $addUser->level = $request->level;
         $addUser->save();
         return response()->json(['insert data successfully'=>$addUser,201]);
+    }
+
+    public function update(Request $request, $id){
+        $this->validate($request,[
+            'name' => 'required|string',
+            'email' => 'required|string',
+        ],
+        [
+            'name.required' => "nama wajib diisi",
+            'email.required' => "email wajib diisi",
+            
+        ]
+    );
+
+        $updateUser = User::find($id);
+        $updateUser->name = $request->name;
+        $updateUser->email = $request->email;
+        $updateUser->level = $request->level;
+        $updateUser->update();
+        return response()->json(['update data successfully'=>$updateUser,201]);
     }
 
     public function delete($id)

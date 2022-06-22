@@ -64,10 +64,15 @@ Route::prefix('/auth')->group(function(){
     //User
     //Get All User -> Admin
     Route::middleware(['auth:api','admin'])->get('/user/allUser','UserController@getAllUser');
+    //Find User by Id ->Admin
+    Route::middleware(['auth:api','admin'])->get('/user/findUser/{id}','UserController@findUserById');
     //Add User -> Admin
     Route::middleware(['auth:api','admin'])->post('/user/store','UserController@store');
+    //Update User -> admin
+    Route::middleware(['auth:api','admin'])->post('/user/update/{id}','UserController@update');
     //Delete User -> Admin
     Route::middleware(['auth:api','admin'])->post('/user/delete/{id}','UserController@delete');
+
   
 
 
