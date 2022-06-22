@@ -55,15 +55,34 @@ class SoalController extends Controller
         }
     }
 
+    public function updateSoal(Request $request, $id){
+        $findSoal = Soal::find($id);
+        if(is_null($findSoal)){
+            return response()->json(['message'=>'data not found',404]);
+        }
+        else{
+            $updateSoal = $findSoal;
+            $updateSoal->soal = $request->soal; 
+            $updateSoal->kunci_jawaban = $request->kunci_jawaban; 
+            $updateSoal->soal = $request->soal; 
+            $updateSoal->A = $request->A;
+            $updateSoal->B = $request->B;
+            $updateSoal->C = $request->C;
+            $updateSoal->D = $request->D;
+            $updateSoal->update();
+            return response($updateSoal,201);
+        }
+    }
+
    
-    // public function deleteSoal($id){
-    //     $delete = Soal::find($id);
-    //     if(is_null($delete)){
-    //         return response()->json(['message'=>'data not found',404]);
-    //     }
-    //     else{
-    //         $delete->delete();
-    //         return response()->json(['message'=>'deleted data sucessfully']);
-    //     }
-    // }
+    public function deleteSoal($id){
+        $delete = Soal::find($id);
+        if(is_null($delete)){
+            return response()->json(['message'=>'data not found',404]);
+        }
+        else{
+            $delete->delete();
+            return response()->json(['message'=>'deleted data sucessfully']);
+        }
+    }
 }

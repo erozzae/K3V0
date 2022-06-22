@@ -36,20 +36,18 @@ class BabController extends Controller
             
         ]);
 
+        //change configuration in config/filesystem
         $addBab = new Bab;
         $addBab->nama_bab = $request->nama_bab;  
-        $addBab->isi_materi = $request->isi_materi;
-        // $file = $request->isi_materi;
-        // $fileName =  time().'.'.$file->getClientOriginalExtension();
-        // $request->isi_materi->move('materi',$fileName);
+    
+        $file = $request->isi_materi;
+        $fileName =  time().'.'.$file->getClientOriginalExtension();
+        $request->isi_materi->move('materi',$fileName);
 
-        // $addBab->isi_materi = $fileName;
-        
+        $addBab->isi_materi = $fileName;        
         // $addBab->isi_materi = $request->file('isi_materi')->store('materials');
-
-        
         $addBab->save();
-        return response($addBab,201);
+        return response()->json($addBab,201);
 
     }
     public function updateBab(Request $request,$id){
@@ -79,9 +77,7 @@ class BabController extends Controller
             
             $idBab = $idBab['id_bab'];
             $soalBab = Soal::where('id_bab',$idBab)->get();
-            return response()->json(['chapterTask'=> $soalBab] ->withHeaders([
-                'Content-Type' => 'application/pdf',
-            ]));
+            return response()->json(['chapterQuiz'=> $soalBab,201]);
         }
     }
 
@@ -119,7 +115,9 @@ class BabController extends Controller
             return response()->json(['message'=>'data not found',404]);
         }
         else{
-            return response()->json(['BabById'=>$findBab]);
+            $getBab = $findBab['isi_materi'];
+            return response()->json(['BabById'=>$findBab,
+                                     'materialChapter'=>asset('materi/'.$getBab)]);
         }
     }
     

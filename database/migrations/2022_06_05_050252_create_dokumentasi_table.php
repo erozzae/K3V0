@@ -15,6 +15,7 @@ class CreateDokumentasiTable extends Migration
     {
         Schema::create('dokumentasi', function (Blueprint $table) {
             $table->bigIncrements('id_dokumentasi');
+            $table->string('dokumentasi');
             $table->timestamps();
         });
     }

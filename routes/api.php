@@ -54,8 +54,12 @@ Route::prefix('/auth')->group(function(){
     Route::middleware(['auth:api'])->get('/soal/allSoal','SoalController@getAllSoal');
     //add Soal -> Admin
     Route::middleware(['auth:api','admin'])->post('/soal/storeSoal/{id_bab}','SoalController@storeSoal');
+    //update Soal -> Admin
+    Route::middleware(['auth:api','admin'])->post('/soal/updateSoal/{id}','SoalController@updateSoal');
     //find Soal -> Auth
     Route::middleware(['auth:api'])->get('/soal/findSoal/{id}','SoalController@findSoalById');
+    //delete Soal -> Admin
+    Route::middleware(['auth:api','admin'])->post('/soal/delete/{id_soal}','SoalController@deleteSoal');
 
     //User
     //Get All User -> Admin
@@ -68,6 +72,3 @@ Route::prefix('/auth')->group(function(){
 
 
 });
-
-
-

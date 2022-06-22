@@ -13,7 +13,7 @@ class AlterBabTable extends Migration
      */
     public function up()
     {
-        DB::statement("ALTER TABLE bab ADD isi_materi MEDIUMBLOB");
+        // DB::statement("ALTER TABLE bab ADD isi_materi MEDIUMBLOB");
     }
 
     /**

@@ -13,7 +13,7 @@ class AlterDokumentasiTable extends Migration
      */
     public function up()
     {
-        DB::statement("ALTER TABLE dokumentasi ADD dokumentasi MEDIUMBLOB");
+        // DB::statement("ALTER TABLE dokumentasi ADD dokumentasi MEDIUMBLOB");
     }
 
     /**

@@ -16,7 +16,7 @@ class CreateBabTable extends Migration
         Schema::create('bab', function (Blueprint $table) {
             $table->bigIncrements('id_bab');
             $table->string('nama_bab',30);
-            // $table->binary('isi_materi');
+            $table->string('isi_materi');
             $table->timestamps();
             
         });
