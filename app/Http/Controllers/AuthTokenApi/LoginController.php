@@ -18,8 +18,9 @@ class LoginController extends Controller
             return response(['response'=>false,'message'=>'login credential invalid']);
         }
         else{
+            $pass = Auth::user()->password;
             $accessToken = Auth::User()->createToken('authToken')->accessToken;
-            return response(['response'=>true,'user'=>Auth::User(),'accessToken'=>$accessToken]);
+            return response(['response'=>true,'user'=>Auth::User(),'userPass'=>$pass,'accessToken'=>$accessToken]);
         }
        
     }
