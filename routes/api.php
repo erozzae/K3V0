@@ -73,6 +73,10 @@ Route::prefix('/auth')->group(function(){
     //Delete User -> Admin
     Route::middleware(['auth:api','admin'])->post('/user/delete/{id}','UserController@delete');
 
+    //Profile
+    //Update user profil
+    Route::middleware(['auth:api'])->post('profile/update/{id}','ProfileController@update');
+
   
 
 
